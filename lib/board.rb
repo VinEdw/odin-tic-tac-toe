@@ -5,4 +5,8 @@ class Board
     @size = size
     @grid = Array.new(size) { Array.new(size) }
   end
+
+  def row(index)
+    @grid[index].dup
+  end
 end
