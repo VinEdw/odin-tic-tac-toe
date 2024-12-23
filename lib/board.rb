@@ -46,4 +46,9 @@ class Board
     column_index = position % size
     [row_index, column_index]
   end
+
+  def place_marker(position, marker)
+    row_index, column_index = position_to_coordinates(position)
+    @grid[row_index][column_index] = marker
+  end
 end
