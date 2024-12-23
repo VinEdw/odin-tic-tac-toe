@@ -31,4 +31,8 @@ class Board
 
     arr
   end
+
+  def coordinates_to_position(row_index, column_index)
+    row_index * size + column_index
+  end
 end
