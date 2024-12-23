@@ -74,7 +74,8 @@ class Board
     vertical_line = '│'
     line_intersection = '┼'
 
-    cell_width = 1 + 2 * horizontal_padding
+    max_digit_width = Math.log10(size * size).floor + 1
+    cell_width = max_digit_width + 2 * horizontal_padding
     last_index = size - 1
 
     filler_row = ((' ' * cell_width + vertical_line) * size).chop + "\n"
@@ -88,7 +89,7 @@ class Board
         position = coordinates_to_position(row_index, column_index)
 
         result << ' ' * horizontal_padding
-        result << (marker ? marker : position).to_s
+        result << (marker ? marker : position).to_s.rjust(max_digit_width)
         result << ' ' * horizontal_padding
 
         result << (column_index == last_index ? "\n" : vertical_line)
