@@ -51,4 +51,19 @@ class Board
     row_index, column_index = position_to_coordinates(position)
     @grid[row_index][column_index] = marker
   end
+
+  def winner
+    for marker in [:x, :o]
+      (0...size).each do |index|
+        return marker if row(index).all?(marker)
+        return marker if column(index).all?(marker)
+      end
+
+      (0..1).each do |index|
+        return marker if diagonal(index).all?(marker)
+      end
+    end
+
+    nil
+  end
 end
