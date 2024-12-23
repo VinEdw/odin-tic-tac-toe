@@ -35,4 +35,10 @@ class Board
   def coordinates_to_position(row_index, column_index)
     row_index * size + column_index
   end
+
+  def position_to_coordinates(position)
+    row_index = position / size
+    column_index = position % size
+    [row_index, column_index]
+  end
 end
