@@ -66,4 +66,38 @@ class Board
 
     nil
   end
+
+  def to_s(horizontal_padding = 2, vertical_padding = 1)
+    result = ''
+
+    horizontal_line = '─'
+    vertical_line = '│'
+    line_intersection = '┼'
+
+    cell_width = 1 + 2 * horizontal_padding
+    last_index = size - 1
+
+    filler_row = ((' ' * cell_width + vertical_line) * size).chop + "\n"
+    horizontal_cell_divider = ((horizontal_line * cell_width + line_intersection) * size).chop + "\n"
+
+    @grid.each_with_index do |row, row_index|
+      vertical_padding.times { result << filler_row }
+
+      row.each_with_index do |marker, column_index|
+        marker = @grid.dig(row_index, column_index)
+        position = coordinates_to_position(row_index, column_index)
+
+        result << ' ' * horizontal_padding
+        result << (marker ? marker : position).to_s
+        result << ' ' * horizontal_padding
+
+        result << (column_index == last_index ? "\n" : vertical_line)
+      end
+
+      vertical_padding.times { result << filler_row }
+      result << horizontal_cell_divider unless row_index == last_index
+    end
+
+    result
+  end
 end
