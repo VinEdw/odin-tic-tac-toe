@@ -32,6 +32,11 @@ class Board
     arr
   end
 
+  def cell(position)
+    row_index, column_index = position_to_coordinates(position)
+    @board.dig(row_index, column_index)
+  end
+
   def coordinates_to_position(row_index, column_index)
     row_index * size + column_index
   end
