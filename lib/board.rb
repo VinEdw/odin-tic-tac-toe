@@ -9,4 +9,8 @@ class Board
   def row(index)
     @grid[index].dup
   end
+
+  def column(index)
+    @grid.map { |row| row[index] }
+  end
 end
