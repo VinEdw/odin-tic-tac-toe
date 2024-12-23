@@ -6,6 +6,10 @@ class Board
     @grid = Array.new(size) { Array.new(size) }
   end
 
+  def max_position
+    size * size - 1
+  end
+
   def row(index)
     @grid[index].dup
   end
@@ -74,7 +78,7 @@ class Board
     vertical_line = '│'
     line_intersection = '┼'
 
-    max_digit_width = Math.log10(size * size).floor + 1
+    max_digit_width = Math.log10(max_position).floor + 1
     cell_width = max_digit_width + 2 * horizontal_padding
     last_index = size - 1
 
