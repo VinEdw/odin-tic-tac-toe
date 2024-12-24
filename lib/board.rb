@@ -10,6 +10,10 @@ class Board
     size * size - 1
   end
 
+  def valid_position?(position)
+    position.between?(0, max_position)
+  end
+
   def row(index)
     @grid[index].dup
   end
